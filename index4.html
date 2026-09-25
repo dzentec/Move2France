@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полное практическое руководство по релокации в Безье (Béziers)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans pb-16">
+
+    <!-- Hero Header -->
+    <header class="bg-blue-800 text-white relative">
+        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=800&q=80" alt="Béziers France" class="w-full h-48 object-cover opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 max-w-md mx-auto">
+            <span class="bg-amber-400 text-slate-900 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Временная защита • Сентябрь 2026</span>
+            <h1 class="text-2xl font-black mt-2 leading-tight">Релокация в Безье (Béziers)</h1>
+            <p class="text-blue-100 text-xs mt-1">Полный практический справочник: мать + ребенок 3 лет</p>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 mt-6 space-y-6">
+
+        <!-- Google Maps Callout -->
+        <a href="https://maps.google.com/?q=Beziers+France" target="_blank" class="block bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold p-3.5 rounded-2xl text-center shadow-sm transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-map-location-dot text-lg"></i>
+            <span>Открыть Безье на Google Maps</span>
+        </a>
+
+        <!-- Section 1: Travel & Security Cushion -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i class="fa-solid fa-bus text-blue-600"></i> 1. Дорога из Украины и подушка безопасности
+            </h2>
+
+            <div class="space-y-3">
+                <div class="p-3.5 bg-blue-50 rounded-xl border border-blue-100">
+                    <div class="font-bold text-blue-900 text-sm">Подробная детализация дороги (Мать + ребенок 3 лет):</div>
+                    <div class="text-2xl font-black text-blue-700 my-1">260 € — 420 €</div>
+                    
+                    <div class="space-y-2 mt-3 text-xs text-blue-950">
+                        <div class="p-2 bg-white/80 rounded-lg border border-blue-100">
+                            <span class="font-bold text-blue-900">Вариант А: Прямой международный автобус</span>
+                            <p class="text-slate-600 mt-0.5">Львов/Киев — Монпелье/Безье (FlixBus, RegioJet или украинские перевозчики). Ребенок до 4 лет — скидка 10–50%.</p>
+                            <div class="font-bold text-blue-800 mt-1">Стоимость билетов: 180 € — 260 € на двоих</div>
+                        </div>
+
+                        <div class="p-2 bg-white/80 rounded-lg border border-blue-100">
+                            <span class="font-bold text-blue-900">Вариант Б: Поезд + Лоукост / Стыковки</span>
+                            <p class="text-slate-600 mt-0.5">Поезд до Перемышля/Хелма (~20–30 €) + авиаперелет из Польши/Венгрии (WizzAir/Ryanair) до Барселоны/Марселя/Монпелье (~80–150 €) + TGV/TER до Безье (~30–50 €).</p>
+                            <div class="font-bold text-blue-800 mt-1">Стоимость: 190 € — 290 € на двоих</div>
+                        </div>
+
+                        <div class="p-2 bg-white/80 rounded-lg border border-blue-100">
+                            <span class="font-bold text-blue-900">Расходы в пути:</span>
+                            <ul class="list-disc pl-4 text-slate-600 space-y-0.5 mt-0.5">
+                                <li>Еда, детское питание, вода, влажные салфетки: 50 € — 80 €</li>
+                                <li>Городской трансфер, багаж, форс-мажор: 30 € — 40 €</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3.5 bg-amber-50 rounded-xl border border-amber-200">
+                    <div class="font-bold text-amber-900 text-sm">Минимальная подушка безопасности (Starter Cushion):</div>
+                    <div class="text-2xl font-black text-amber-700 my-1">1 500 € — 2 150 €</div>
+                    <p class="text-xs text-amber-900 mb-2">Необходима для покрытия расходов на первый месяц до момента активации и поступления социальных выплат ADA и CAF.</p>
+                    <ul class="text-xs text-amber-950 space-y-1.5 list-disc pl-4">
+                        <li><strong>Залог за квартиру (Dépôt de garantie):</strong> 450 € — 650 € (равен 1 мес. аренды, далее оформляется государственная гарантия Visale).</li>
+                        <li><strong>Быт и питание на 1–1.5 месяца:</strong> 500 € — 700 € (до первой выплаты по карте ADA).</li>
+                        <li><strong>Буфер на задержку выплат CAF/APL:</strong> 500 € — 800 € (компенсация задержек оформления жилой субсидии).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Financial Scenarios & Groceries -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i class="fa-solid fa-calculator text-blue-600"></i> 2. Финансовый план и Цены на Продукты
+            </h2>
+
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-slate-900 text-sm"><i class="fa-solid fa-cart-shopping text-emerald-600"></i> Цены на продукты (Lidl / Carrefour / Aldi)</span>
+                    <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Безье 2026</span>
+                </div>
+                <p class="text-xs text-slate-600">Средняя стоимость базовой продуктовой корзины на взрослого и ребенка 3 лет составляет <strong>250 € — 350 € в месяц</strong>.</p>
+
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="text-slate-500">Молоко (1 л)</div>
+                        <div class="font-bold text-slate-800">0,95 € — 1,15 €</div>
+                    </div>
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="text-slate-500">Яйца (10 шт.)</div>
+                        <div class="font-bold text-slate-800">2,10 € — 2,80 €</div>
+                    </div>
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="text-slate-500">Багет / Хлеб</div>
+                        <div class="font-bold text-slate-800">0,90 € — 1,20 €</div>
+                    </div>
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="text-slate-500">Куриное филе (1 кг)</div>
+                        <div class="font-bold text-slate-800">8,50 € — 11,00 €</div>
+                    </div>
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="text-slate-500">Картофель (2.5 кг)</div>
+                        <div class="font-bold text-slate-800">2,20 € — 3,00 €</div>
+                    </div>
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="text-slate-500">Яблоки / Бананы (1 кг)</div>
+                        <div class="font-bold text-slate-800">1,50 € — 2,20 €</div>
+                    </div>
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="text-slate-500">Детский йогурт (4 шт)</div>
+                        <div class="font-bold text-slate-800">1,40 € — 2,10 €</div>
+                    </div>
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="text-slate-500">Вода питьевая (6×1.5л)</div>
+                        <div class="font-bold text-slate-800">1,20 € — 1,80 €</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs space-y-2">
+                <div class="font-bold text-slate-800 text-sm mb-1">Общий бюджет расходов в месяц:</div>
+                <div class="flex justify-between border-b border-slate-200 pb-1">
+                    <span>Аренда T2 (спальня + гостиная):</span>
+                    <span class="font-bold">450 € — 650 €</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-200 pb-1">
+                    <span>Коммунальные (свет, вода, газ):</span>
+                    <span class="font-bold">80 € — 120 €</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-200 pb-1">
+                    <span>Связь и интернет (оптоволокно + моб.):</span>
+                    <span class="font-bold">30 € — 45 €</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-200 pb-1">
+                    <span>Питание и бытовая химия на двоих:</span>
+                    <span class="font-bold">250 € — 350 €</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-200 pb-1">
+                    <span>Транспорт beeMob (льготный):</span>
+                    <span class="font-bold">10 € — 15 €</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Сад (столовая 0,20–1€/день + продленка):</span>
+                    <span class="font-bold">10 € — 30 €</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="switchScenario('opt')" id="btn-opt" class="py-2.5 px-3 text-xs font-bold rounded-xl border border-emerald-500 bg-emerald-500 text-white transition">
+                    🟢 Оптимистический
+                </button>
+                <button onclick="switchScenario('pess')" id="btn-pess" class="py-2.5 px-3 text-xs font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-600 transition">
+                    🔴 Пессимистический
+                </button>
+            </div>
+
+            <div id="scenario-card" class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 transition">
+                <div class="flex justify-between items-center mb-2">
+                    <span id="sc-title" class="font-bold text-emerald-900 text-sm">Своевременные выплаты ADA + CAF</span>
+                    <span id="sc-balance" class="text-xs font-black px-2.5 py-1 bg-emerald-200 text-emerald-800 rounded-lg">+75 € / мес.</span>
+                </div>
+                <div class="text-xs space-y-1.5 text-slate-700 border-t border-emerald-200/80 pt-2 mt-2">
+                    <div class="flex justify-between"><span>Итого расходы в месяц:</span> <span id="sc-exp" class="font-bold text-slate-900">830 €</span></div>
+                    <div class="flex justify-between"><span>Пособие ADA от OFII (17.60€/день):</span> <span id="sc-ada" class="font-bold text-emerald-700">+535 €</span></div>
+                    <div class="flex justify-between"><span>Субсидия CAF на жилье (APL):</span> <span id="sc-apl" class="font-bold text-emerald-700">+250 €</span></div>
+                    <div class="flex justify-between"><span>Пособие одинокого родителя (ASF):</span> <span id="sc-asf" class="font-bold text-emerald-700">+120 €</span></div>
+                    <div id="sc-desc" class="text-[11px] text-slate-500 italic mt-2 border-t border-emerald-200/50 pt-1">Пособия полностью покрывают базовые потребности. Остается профицит на личные расходы.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Full Step-by-step Registration -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i class="fa-solid fa-file-signature text-blue-600"></i> 3. Алгоритм оформления документов
+            </h2>
+
+            <div class="space-y-4">
+                <!-- Step 1 -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                    <div class="font-bold text-blue-900 text-sm">Шаг 1. Первичный контакт с властями (Email)</div>
+                    <p class="text-xs text-slate-600">По прибытии отправьте электронное письмо в миграционную службу департамента Эро на адрес: <a href="mailto:pref-asile@herault.gouv.fr" class="text-blue-600 font-bold underline">pref-asile@herault.gouv.fr</a>.</p>
+                    <p class="text-xs text-slate-600">Укажите ФИО (свои и ребенка латиницей по паспорту), дату рождения, гражданство и адрес проживания в Безье. В ответ придет приглашение (convocation).</p>
+                    <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 mt-2">
+                        <div class="font-bold text-slate-800">Préfecture de l'Hérault (Montpellier)</div>
+                        <div class="text-slate-500">📍 Адрес: 34 Place Martyrs de la Résistance, 34000 Montpellier</div>
+                        <div>📞 Тел: <a href="tel:+33467616161" class="text-blue-600 font-bold">+33 4 67 61 61 61</a></div>
+                        <div>🌐 Сайт: <a href="https://www.herault.gouv.fr" target="_blank" class="text-blue-600 font-bold">herault.gouv.fr</a></div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                    <div class="font-bold text-blue-900 text-sm">Шаг 2. Визит в Субпрефектуру Безье (Получение APS)</div>
+                    <p class="text-xs text-slate-600">Визит по записи с ребенком. Документы: загранпаспорта, свидетельство о рождении ребенка, подтверждение проживания в Безье (attestation d'hébergement или договор), 4 фото.</p>
+                    <p class="text-xs text-emerald-700 font-semibold">Результат: Выдача временного вида на жительство APS (Autorisation Provisoire de Séjour) на 6 месяцев с правом работы.</p>
+                    <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 mt-2">
+                        <div class="font-bold text-slate-800">Sous-préfecture de Béziers</div>
+                        <div class="text-slate-500">📍 Адрес: 24 Boulevard de Genève, 34500 Béziers</div>
+                        <div>📞 Тел: <a href="tel:+33467367070" class="text-blue-600 font-bold">+33 4 67 36 70 70</a></div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                    <div class="font-bold text-blue-900 text-sm">Шаг 3. Оформление выплат в OFII (Карта ADA)</div>
+                    <p class="text-xs text-slate-600">В субпрефектуре вас направят к представительству OFII для активации персональной банковской карты и назначения ежемесячного пособия ADA (17,60 €/день при самостоятельном найме или 10,20 €/день в государственном жилье).</p>
+                    <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 mt-2">
+                        <div class="font-bold text-slate-800">OFII Direction Territoriale Montpellier</div>
+                        <div class="text-slate-500">📍 Адрес: 1008 Avenue Raymond Dugrand, 34000 Montpellier</div>
+                        <div>📞 Тел: <a href="tel:+33499772160" class="text-blue-600 font-bold">+33 4 99 77 21 60</a></div>
+                        <div>✉️ Email: <a href="mailto:montpellier@ofii.fr" class="text-blue-600 font-bold">montpellier@ofii.fr</a></div>
+                        <div>🌐 Сайт: <a href="https://www.ofii.fr" target="_blank" class="text-blue-600 font-bold">ofii.fr</a></div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                    <div class="font-bold text-blue-900 text-sm">Шаг 4. Медицинская страховка (CPAM)</div>
+                    <p class="text-xs text-slate-600">С полученным APS вы бесплатно оформляетесь в систему универсального страхования PUMA и получаете дополнительную страховку CSS (Complémentaire Santé Solidaire). Покрывает 100% расходов на врачей, анализы и лекарства.</p>
+                    <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 mt-2">
+                        <div class="font-bold text-slate-800">CPAM de l'Hérault (Béziers)</div>
+                        <div class="text-slate-500">📍 Адрес: 14 Rue du Docteur Albert Schweitzer, 34500 Béziers</div>
+                        <div>📞 Единый тел: <a href="tel:3646" class="text-blue-600 font-bold">36 46</a></div>
+                        <div>🌐 Портал: <a href="https://www.ameli.fr" target="_blank" class="text-blue-600 font-bold">ameli.fr</a></div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                    <div class="font-bold text-blue-900 text-sm">Шаг 5. Запись ребенка в детский сад (Mairie)</div>
+                    <p class="text-xs text-slate-600">По закону Франции дети с 3 лет обязаны посещать детский сад (école maternelle). Обучение бесплатное. Мэрия гарантированно выделяет место по месту жительства.</p>
+                    <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 mt-2">
+                        <div class="font-bold text-slate-800">Service Éducation de la Mairie de Béziers</div>
+                        <div class="text-slate-500">📍 Адрес: Place Gabriel Péri, 34500 Béziers</div>
+                        <div>📞 Тел: <a href="tel:+33467367373" class="text-blue-600 font-bold">+33 4 67 36 73 73</a></div>
+                        <div>🌐 Сайт: <a href="https://www.ville-beziers.fr" target="_blank" class="text-blue-600 font-bold">ville-beziers.fr</a></div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                    <div class="font-bold text-blue-900 text-sm">Шаг 6. Подача документов в CAF</div>
+                    <p class="text-xs text-slate-600">Оформление компенсации жилищных расходов APL (покрывает до 30–50% стоимости аренды жилья) и подача заявки на пособие для одиноких родителей ASF.</p>
+                    <div class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 space-y-1 mt-2">
+                        <div class="font-bold text-slate-800">CAF de l'Hérault (Agence de Béziers)</div>
+                        <div class="text-slate-500">📍 Адрес: 13 Révolution, 34500 Béziers / Place De Gaulle</div>
+                        <div>📞 Единый тел: <a href="tel:3230" class="text-blue-600 font-bold">32 30</a></div>
+                        <div>🌐 Портал: <a href="https://www.caf.fr" target="_blank" class="text-blue-600 font-bold">caf.fr</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Labor Market & Employment Assistance -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i class="fa-solid fa-briefcase text-blue-600"></i> 4. Рынок труда и трудоустройство
+            </h2>
+
+            <p class="text-xs text-slate-600">Экономика Безье и окрестностей тесно связана с туризмом, сферой услуг и сельским хозяйством. Вакансии для старта без глубокого знания французского языка:</p>
+
+            <ul class="text-xs space-y-1.5 text-slate-700 list-disc pl-4">
+                <li><strong>Туризм и общепит (побережье Valras-Plage, Sérignan):</strong> уборка отелей и кемпингов, помощники на кухне, посудомойщики, официанты.</li>
+                <li><strong>Сельское хозяйство:</strong> сезонный сбор винограда и фруктов (регион славится виноделием).</li>
+                <li><strong>Уборка и уход (Services à la personne):</strong> клининг офисов, частных домов, помощь по дому.</li>
+            </ul>
+
+            <div class="space-y-2 pt-2">
+                <div class="font-bold text-slate-800 text-xs">Государственная служба занятости:</div>
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1">
+                    <div class="font-bold text-slate-900">France Travail (бывший Pôle Emploi)</div>
+                    <div class="text-slate-500">📍 Адрес: 166 Rue Maurice Béjart, 34500 Béziers</div>
+                    <div>📞 Тел: <a href="tel:3949" class="text-blue-600 font-bold">39 49</a></div>
+                    <div>🌐 Портал: <a href="https://www.francetravail.fr" target="_blank" class="text-blue-600 font-bold">francetravail.fr</a></div>
+                </div>
+
+                <div class="font-bold text-slate-800 text-xs pt-2">Агентства временной работы (Intérim):</div>
+                <div class="grid grid-cols-1 gap-2 text-xs">
+                    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="font-bold text-slate-800">Adecco Béziers</div>
+                        <div class="text-slate-500">📍 12 Allées Paul Riquet | 📞 <a href="tel:+33467498180" class="text-blue-600 font-bold">+33 4 67 49 81 80</a></div>
+                        <div>🌐 <a href="https://www.adecco.fr" target="_blank" class="text-blue-600 font-bold">adecco.fr</a></div>
+                    </div>
+                    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="font-bold text-slate-800">Manpower Béziers</div>
+                        <div class="text-slate-500">📍 21 Ave Georges Clemenceau | 📞 <a href="tel:+33467493300" class="text-blue-600 font-bold">+33 4 67 49 33 00</a></div>
+                        <div>🌐 <a href="https://www.manpower.fr" target="_blank" class="text-blue-600 font-bold">manpower.fr</a></div>
+                    </div>
+                    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="font-bold text-slate-800">Randstad Béziers</div>
+                        <div class="text-slate-500">📍 41 Avenue Jean Moulin | 📞 <a href="tel:+33467353230" class="text-blue-600 font-bold">+33 4 67 35 32 30</a></div>
+                        <div>🌐 <a href="https://www.randstad.fr" target="_blank" class="text-blue-600 font-bold">randstad.fr</a></div>
+                    </div>
+                </div>
+
+                <div class="font-bold text-slate-800 text-xs pt-2">Онлайн-поиск вакансий по Безье:</div>
+                <div class="flex flex-wrap gap-2 text-xs">
+                    <a href="https://fr.indeed.com/l-B%C3%A9ziers-(34)-emplois.html" target="_blank" class="px-3 py-1.5 bg-blue-50 text-blue-700 font-bold rounded-lg border border-blue-200"><i class="fa-solid fa-arrow-up-right-from-square"></i> Indeed Béziers</a>
+                    <a href="https://www.leboncoin.fr/c/offres_d_emploi" target="_blank" class="px-3 py-1.5 bg-amber-50 text-amber-800 font-bold rounded-lg border border-amber-200"><i class="fa-solid fa-arrow-up-right-from-square"></i> Leboncoin Hérault</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Support Organizations & Associations -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i class="fa-solid fa-hand-holding-heart text-blue-600"></i> 5. Диаспора и волонтерские организации
+            </h2>
+
+            <div class="space-y-3 text-xs">
+                <div class="p-3 bg-blue-50 rounded-xl border border-blue-200 space-y-1">
+                    <div class="font-bold text-blue-900 text-sm">Ассоциация «Ukraine Ridna» (Украина Ридна)</div>
+                    <div class="text-slate-600">📍 Адрес: 2 Rue Jeanne Jugan, 34500 Béziers</div>
+                    <p class="text-slate-700"><strong>Чем помогают:</strong> Бесплатные уроки французского языка, детские мероприятия, бытовая адаптация и интеграционные встречи для семей из Украины.</p>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                    <div class="font-bold text-slate-800">Forum Réfugiés & Singa (Партнеры Префектуры)</div>
+                    <div class="text-slate-500">📍 Адрес: 15 Rue Boieldieu, 34500 Béziers</div>
+                    <div>📞 Тел: <a href="tel:+33467012345" class="text-blue-600 font-bold">+33 4 67 01 23 45</a></div>
+                    <div>🌐 Сайт: <a href="https://www.forumrefugies.org" target="_blank" class="text-blue-600 font-bold">forumrefugies.org</a></div>
+                    <p class="text-slate-600">Официальное подбор жилья и социальное сопровождение бенефициаров временной защиты.</p>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                    <div class="font-bold text-slate-800">Центр первичного приема (Palais des Congrès de Béziers)</div>
+                    <div class="text-slate-500">📍 Адрес: 29 Avenue Saint-Saëns, 34500 Béziers</div>
+                    <div>📞 Тел: <a href="tel:+33467761900" class="text-blue-600 font-bold">+33 4 67 76 19 00</a></div>
+                    <p class="text-slate-600">Первичный пункт ориентирования, дежурство волонтеров и социальных служб.</p>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                    <div class="font-bold text-slate-800">Муниципальный центр соцпомощи (CCAS de Béziers)</div>
+                    <div class="text-slate-500">📍 Адрес: 2 Rue Voltaire, 34500 Béziers</div>
+                    <div>📞 Тел: <a href="tel:+33467367100" class="text-blue-600 font-bold">+33 4 67 36 71 00</a></div>
+                    <p class="text-slate-600">Выдача продуктовых наборов, оформление экстренной материальной помощи.</p>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                    <div class="font-bold text-slate-800">Maison de Région à Béziers</div>
+                    <div class="text-slate-500">📍 Адрес: 44 bis Allées Paul Riquet, 34500 Béziers</div>
+                    <div>📞 Тел: <a href="tel:+33461463400" class="text-blue-600 font-bold">+33 4 61 46 34 00</a></div>
+                    <div>🌐 Сайт: <a href="https://www.laregion.fr" target="_blank" class="text-blue-600 font-bold">laregion.fr</a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Infrastructure, Education, Healthcare & Climate -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i class="fa-solid fa-city text-blue-600"></i> 6. Инфраструктура, сады и медицина
+            </h2>
+
+            <div class="grid grid-cols-2 gap-2">
+                <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Valras-Plage" class="w-full h-24 object-cover">
+                    <div class="p-2 text-[11px] font-bold text-slate-700 text-center">Пляжи Valras-Plage (15 мин)</div>
+                </div>
+                <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=400&q=80" alt="École Maternelle" class="w-full h-24 object-cover">
+                    <div class="p-2 text-[11px] font-bold text-slate-700 text-center">Детские сады (бесплатно)</div>
+                </div>
+            </div>
+
+            <div class="space-y-3 text-xs text-slate-700">
+                <div class="space-y-1">
+                    <div class="font-bold text-slate-900 text-sm">🌦️ Климат и море</div>
+                    <p>Средиземноморский климат, более 300 солнечных дней в году. Зима очень мягкая (+10 °C...+13 °C), лето сухое (+28 °C...+32 °C) с морским бризом. Пляжи Valras-Plage и Sérignan-Plage находятся всего в 12–15 км (15–20 минут на автобусе beeMob).</p>
+                </div>
+
+                <div class="space-y-1 pt-1">
+                    <div class="font-bold text-slate-900 text-sm">🚍 Общественный транспорт (beeMob)</div>
+                    <p>Автобусная сеть связывает все районы города и пляжи. Разовый билет — 1,20 €. Для бенефициаров соцпомощи в мэрии оформляется льготный проездной (10 € — 15 € в месяц).</p>
+                </div>
+
+                <div class="space-y-1 pt-1">
+                    <div class="font-bold text-slate-900 text-sm">🚆 Поезда и транспортная связность</div>
+                    <p>Вокзал <strong>Gare de Béziers</strong> — крупный узел скоростных поездов TGV. Прямые поезда: Париж (4 часа), Монпелье (35 минут), Сет (20 минут), Барселона (2 часа 15 минут).</p>
+                </div>
+
+                <div class="space-y-1 pt-1">
+                    <div class="font-bold text-slate-900 text-sm">🎒 Детские сады (École Maternelle)</div>
+                    <p>По закону Франции дети с 3 лет обязаны посещать école maternelle. Обучение бесплатное. График: Пн, Вт, Чт, Пт с 8:30 до 16:30. В мэрии оформляется столовая (Cantine) — для семей с пособием ADA тариф составляет от 0,20 € до 1 € за обед.</p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 space-y-1 mt-2">
+                    <div class="font-bold text-emerald-900 text-sm">🏥 Медицинская помощь</div>
+                    <div class="font-bold text-slate-800">Centre Hospitalier de Béziers (Hôpital Clémenceau)</div>
+                    <div class="text-slate-600">📍 Адрес: 2 Boulevard Alfred de Musset, 34500 Béziers</div>
+                    <div>📞 Тел: <a href="tel:+33467357000" class="text-blue-600 font-bold">+33 4 67 35 70 00</a></div>
+                    <p class="text-emerald-950 mt-1">Крупный больничный комплекс с круглосуточной детской неотложной помощью (Urgences Pédiatriques). По страховке PUMA/CSS все визиты, анализы, госпитализация и выписанные лекарства покрываются на 100% без оплаты на месте.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6.5: Attractions for Mom & Kid (3 Years) -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i class="fa-solid fa-tree text-emerald-600"></i> Достопримечательности и отдых (Мама + ребенок 3 лет)
+            </h2>
+
+            <p class="text-xs text-slate-600">Лучшие места в Безье для прогулок с коляской, безопасных игр трехлетнего ребенка и семейного отдыха:</p>
+
+            <div class="space-y-3 text-xs">
+                <!-- Location 1 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-slate-900 text-sm">🌳 Парк Plateau des Poètes</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Бесплатно</span>
+                    </div>
+                    <div class="text-slate-500">📍 Центр города (рядом с вокзалом Gare de Béziers)</div>
+                    <p class="text-slate-700">Огромный английский парк в самом центре с теннистыми аллеями, прудом с уткам и лебедями, фонтанами и отличной современной детской площадкой для самых маленьких. Идеально подходит для прогулок с коляской в жару.</p>
+                </div>
+
+                <!-- Location 2 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-slate-900 text-sm">⚓ 9 Шлюзов Фонсеран (Neuf Écluses de Fonseranes)</span>
+                        <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-full">ЮНЕСКО</span>
+                    </div>
+                    <div class="text-slate-500">📍 Canal du Midi, Béziers</div>
+                    <p class="text-slate-700">Главная достопримечательность города на Канале Дю-Миди. Водный «лестничный» каскад, где ребенок может наблюдать за прохождением катеров и лодок. Имеются пешеходные деревянные настилы для прогулок, зеленые лужайки и кафе.</p>
+                </div>
+
+                <!-- Location 3 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-slate-900 text-sm">🛝 Аллеи Поля Рике (Allées Paul Riquet)</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Пешеходная зона</span>
+                    </div>
+                    <div class="text-slate-500">📍 Исторический центр</div>
+                    <p class="text-slate-700">Широкий бульвар без машин с каруселями, семейными кафе и открытыми площадками. По пятницам здесь проходит традиционный цветочный рынок. Очень удобно гулять с ребенком вечернее время.</p>
+                </div>
+
+                <!-- Location 4 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-slate-900 text-sm">🏰 Сады Собора Святого Назария (Jardin de l'Évêché)</span>
+                        <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">Панорама</span>
+                    </div>
+                    <div class="text-slate-500">📍 У собора Cathédrale Saint-Nazaire</div>
+                    <p class="text-slate-700">Живописный епископский сад на холме с безопасными дорожками, фонтанами и потрясающим панорамным видом на реку Орб и Старый мост (Pont Vieux).</p>
+                </div>
+
+                <!-- Location 5 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-slate-900 text-sm">🏖️ Семейный пляж Valras-Plage</span>
+                        <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-full">15 мин на beeMob</span>
+                    </div>
+                    <div class="text-slate-500">📍 Побережье Средиземного моря</div>
+                    <p class="text-slate-700">Песчаный пляж с мелким и плавным входом в воду, идеальный для 3-летнего ребенка. На набережной обустроены игровые городки, качели и прогулочный променад без машин.</p>
+                </div>
+
+                <!-- Location 6 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-slate-900 text-sm">🎠 Крытые игровые центры (Развлечения в непогоду)</span>
+                        <span class="text-[10px] bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded-full">Игровые зоны</span>
+                    </div>
+                    <p class="text-slate-700">Развлекательный центр <strong>Kiddy Parc / Royal Kids</strong> (торговая зона Безье) — крытый комплекс с мягкими батутами, горками и развивающими бассейнами с шариками для малышей от 1 до 4 лет.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: YOUTUBE VIDEO REVIEWS AT THE VERY END OF THE FEED -->
+        <section class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i class="fa-brands fa-youtube text-red-600"></i> Обзорные видео на YouTube (на русском)
+            </h2>
+
+            <!-- Large Vertical Video Cards Feed -->
+            <div class="space-y-4">
+                <!-- Large Card 1 -->
+                <a href="https://www.youtube.com/results?search_query=%D0%B1%D0%B5%D0%B7%D1%8C%D0%B5+%D1%84%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%8F+%D0%BE%D0%B1%D0%B7%D0%BE%D1%80+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0" target="_blank" class="block bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden hover:border-red-300 transition group shadow-sm">
+                    <div class="relative h-44 bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Пляжи и город Безье" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                <i class="fa-solid fa-play text-lg pl-0.5"></i>
+                            </div>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">14:20</span>
+                    </div>
+                    <div class="p-3.5 space-y-1">
+                        <div class="font-bold text-slate-900 text-sm leading-snug group-hover:text-red-600 transition">Обзор города Безье: районы, ценник на жилье и близлежащие пляжи Valras-Plage</div>
+                        <p class="text-xs text-slate-500">Подробная прогулка по центру города, паркам, набережной канала Дю-Миди и поездка к морю на автобусе.</p>
+                        <div class="pt-2 flex items-center gap-1.5 text-red-600 font-bold text-xs">
+                            <span>Смотреть на YouTube</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Large Card 2 -->
+                <a href="https://www.youtube.com/results?search_query=%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F+%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D0%B0+%D1%84%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%8F+%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%D1%8B+ADA+CAF" target="_blank" class="block bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden hover:border-red-300 transition group shadow-sm">
+                    <div class="relative h-44 bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="Документы и пособия" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                <i class="fa-solid fa-play text-lg pl-0.5"></i>
+                            </div>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">18:45</span>
+                    </div>
+                    <div class="p-3.5 space-y-1">
+                        <div class="font-bold text-slate-900 text-sm leading-snug group-hover:text-red-600 transition">Временная защита во Франции: личный опыт оформления ADA, CAF и детского сада</div>
+                        <p class="text-xs text-slate-500">Практические советы по визитам в Префектуру, получению карты ADA, страховой медицинской карты PUMA и записи ребенка в École Maternelle.</p>
+                        <div class="pt-2 flex items-center gap-1.5 text-red-600 font-bold text-xs">
+                            <span>Смотреть на YouTube</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Large Card 3 -->
+                <a href="https://www.youtube.com/results?search_query=%D0%B6%D0%B8%D0%B7%D0%BD%D1%8C+%D0%BD%D0%B0+%D1%8E%D0%B3%D0%B5+%D1%84%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D0%B8+%D1%86%D0%B5%D0%BD%D1%8B+%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0" target="_blank" class="block bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden hover:border-red-300 transition group shadow-sm">
+                    <div class="relative h-44 bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80" alt="Цены на продукты и аренда" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                <i class="fa-solid fa-play text-lg pl-0.5"></i>
+                            </div>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">11:10</span>
+                    </div>
+                    <div class="p-3.5 space-y-1">
+                        <div class="font-bold text-slate-900 text-sm leading-snug group-hover:text-red-600 transition">Жизнь и цены на Юге Франции: честный обзор супермаркетов Lidl и Carrefour</div>
+                        <p class="text-xs text-slate-500">Поход по магазинам с ценами на молочные продукты, мясо, овощи, фрукты и детские товары.</p>
+                        <div class="pt-2 flex items-center gap-1.5 text-red-600 font-bold text-xs">
+                            <span>Смотреть на YouTube</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Quick Search Buttons (KEPT INTACT) -->
+            <div class="pt-2 border-t border-slate-100">
+                <div class="font-bold text-slate-800 text-xs mb-2">Быстрый поиск видео по темам:</div>
+                <div class="flex flex-wrap gap-2 text-xs">
+                    <a href="https://www.youtube.com/results?search_query=Beziers+France+vlog+русский" target="_blank" class="px-3 py-1.5 bg-red-50 text-red-700 font-bold rounded-lg border border-red-200 hover:bg-red-100 transition">
+                        <i class="fa-brands fa-youtube"></i> Влоги Безье
+                    </a>
+                    <a href="https://www.youtube.com/results?search_query=école+maternelle+франция+опыт" target="_blank" class="px-3 py-1.5 bg-red-50 text-red-700 font-bold rounded-lg border border-red-200 hover:bg-red-100 transition">
+                        <i class="fa-brands fa-youtube"></i> Детсады во Франции
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-md mx-auto text-center text-xs text-slate-400 mt-8 mb-4 px-4">
+        Практическое руководство по релокации в Безье • Актуально на 2026 год
+    </footer>
+
+    <!-- Interactive Script for Financial Scenarios -->
+    <script>
+        function switchScenario(type) {
+            const btnOpt = document.getElementById('btn-opt');
+            const btnPess = document.getElementById('btn-pess');
+            const card = document.getElementById('scenario-card');
+
+            if (type === 'opt') {
+                btnOpt.className = 'py-2.5 px-3 text-xs font-bold rounded-xl border border-emerald-500 bg-emerald-500 text-white transition';
+                btnPess.className = 'py-2.5 px-3 text-xs font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-600 transition';
+                
+                card.className = 'p-4 rounded-xl bg-emerald-50 border border-emerald-200 transition';
+                document.getElementById('sc-title').innerText = 'Своевременные выплаты ADA + CAF';
+                document.getElementById('sc-balance').innerText = '+75 € / мес.';
+                document.getElementById('sc-balance').className = 'text-xs font-black px-2.5 py-1 bg-emerald-200 text-emerald-800 rounded-lg';
+                document.getElementById('sc-exp').innerText = '830 €';
+                document.getElementById('sc-ada').innerText = '+535 €';
+                document.getElementById('sc-apl').innerText = '+250 €';
+                document.getElementById('sc-asf').innerText = '+120 €';
+                document.getElementById('sc-desc').innerText = 'Пособия полностью покрывают базовые потребности. Остается профицит на личные расходы.';
+            } else {
+                btnPess.className = 'py-2.5 px-3 text-xs font-bold rounded-xl border border-rose-500 bg-rose-500 text-white transition';
+                btnOpt.className = 'py-2.5 px-3 text-xs font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-600 transition';
+                
+                card.className = 'p-4 rounded-xl bg-rose-50 border border-rose-200 transition';
+                document.getElementById('sc-title').innerText = 'Задержка выплат CAF на 2-3 месяца';
+                document.getElementById('sc-balance').innerText = '-682 € / мес.';
+                document.getElementById('sc-balance').className = 'text-xs font-black px-2.5 py-1 bg-rose-200 text-rose-800 rounded-lg';
+                document.getElementById('sc-exp').innerText = '1 210 €';
+                document.getElementById('sc-ada').innerText = '+528 €';
+                document.getElementById('sc-apl').innerText = '0 € (задержка)';
+                document.getElementById('sc-asf').innerText = '0 € (задержка)';
+                document.getElementById('sc-desc').innerText = 'Возникает временный дефицит, покрываемый из подушки безопасности. После оформления CAF выплатит задолженность задним числом.';
+            }
+        }
+    </script>
+</body>
+</html>
